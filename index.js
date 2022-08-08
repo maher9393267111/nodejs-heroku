@@ -10,7 +10,16 @@ const socket = require("socket.io");
 
 const io = socket(server, {
     cors: {
-        origin: "http://localhost:3000", //specify that React app on port 3000 can connect
+      //  origin: "http://localhost:3000",
+
+        // add more origins here
+        origin:{
+            "http://localhost:3000": true,
+            "pusher-nextjs-seven.vercel.app": true,
+
+        },
+     
+
         methods: ["GET", "POST" , "PUT", "DELETE"],
         credentials: true
     }
