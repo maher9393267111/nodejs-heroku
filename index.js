@@ -6,7 +6,17 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const server = http.createServer(app);
 const socket = require("socket.io");
-const io = socket(server);
+//const io = socket(server);
+
+const io = socket(server, {
+    cors: {
+        origin: "http://localhost:3000", //specify that React app on port 3000 can connect
+        methods: ["GET", "POST" , "PUT", "DELETE"],
+        credentials: true
+    }
+})
+
+
 
 
 app.use(express.json({ extended: false }));
@@ -16,6 +26,9 @@ app.use("/api/product", product);
 app.use("/",  (req, res) => {
     res.send("Hello World");
 } );
+
+
+// server usee cors
 
 
 
